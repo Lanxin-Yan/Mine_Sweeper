@@ -6,8 +6,7 @@ public class BombSquare extends GameSquare
     private GameBoard board;                            // Object reference to the GameBoard this square is part of.
     private boolean hasBomb;                            // True if this squre contains a bomb. False otherwise.
     private int count;                                  
-    BombSquare compBomb;                                
-    private boolean blank;
+    private boolean blank = true;                       // Will be true until bomb is spotted, then it will be false, to help recursion terminate
 
     public static final int MINE_PROBABILITY = 7;       // Probability of bombs, the higher the number, the less the bombs, vice-versa.
 
@@ -23,7 +22,6 @@ public class BombSquare extends GameSquare
 
         this.board = board;
         this.hasBomb = ((int) (Math.random() * MINE_PROBABILITY)) == 0;
-        this.blank = true;
     }
 
     public void leftClicked()
