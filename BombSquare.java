@@ -37,7 +37,7 @@ public class BombSquare extends GameSquare
                 }
             }
 
-            JOptionPane.showMessageDialog(null, "You lose!");
+            JOptionPane.showMessageDialog(null, "GAME OVER!!!!","MINE_SWEEPER",JOptionPane.WARNING_MESSAGE);     
             board.dispose();
             GameBoard b = new GameBoard("BugSweeper", 30, 30, "BombSquare");
         }   
@@ -48,6 +48,7 @@ public class BombSquare extends GameSquare
     
 
     public void rightClicked() { 
+        if (this.blank)
         this.setImage("images/flag.png");                  
     }
 
@@ -79,7 +80,7 @@ public class BombSquare extends GameSquare
             for (int dy = -1; dy < 2; ++dy) {
                 if (x+dx < 0 || x+dx >= 30 || y+dy < 0 || y+dy >= 30) continue;
                 BombSquare nei = (BombSquare)board.getSquareAt(x+dx,y+dy);
-                if (nei.blank)                              //blank means there is no bomb 
+                if (nei.blank)                                              //blank means there is no bomb 
                     nei.recursiveCall(x+dx,y+dy);   
                 }
             }
