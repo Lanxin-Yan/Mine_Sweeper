@@ -30,8 +30,8 @@ public class BombSquare extends GameSquare
         if (hasBomb){   
             this.setImage("images/bomb.png");
 
-            for (int i = 0; i < 29; i ++){
-                for (int x = 0; x < 29; x++){
+            for (int i = 0; i <= 29; i ++){
+                for (int x = 0; x <= 29; x++){
                     BombSquare e = (BombSquare)board.getSquareAt(i, x);
                     if (e.hasBomb) e.setImage("images/bomb.png");
                 }
@@ -58,7 +58,7 @@ public class BombSquare extends GameSquare
      */
     public void recursiveCall(int x, int y) {
 
-        if (x < 0 || y < 0 || x > 29 || y > 29) return;                     //there are chances where boxes are out-of bounds, so here a checker to stop NullPointerException error.
+        if (x < 0 || y < 0 || x >= 30 || y >= 30) return;                     //there are chances where boxes are out-of bounds, so here a checker to stop NullPointerException error.
     
         for (int dx = -1; dx < 2; ++dx)
             for (int dy = -1; dy < 2; ++dy) {
@@ -77,7 +77,7 @@ public class BombSquare extends GameSquare
         
         for (int dx = -1; dx < 2; ++dx)
             for (int dy = -1; dy < 2; ++dy) {
-                if (x+dx < 0 || x+dx > 29 || y+dy < 0 || y+dy > 29) continue;
+                if (x+dx < 0 || x+dx >= 30 || y+dy < 0 || y+dy >= 30) continue;
                 BombSquare nei = (BombSquare)board.getSquareAt(x+dx,y+dy);
                 if (nei.blank)                              //blank means there is no bomb 
                     nei.recursiveCall(x+dx,y+dy);   
